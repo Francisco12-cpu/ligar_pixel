@@ -27,23 +27,6 @@ jogável offline, sozinho ou com amigos.
 - **Natureza e habilidade** agora são escolhíveis ao adicionar um Pokémon pela busca (25 naturezas oficiais; habilidades vêm direto do resultado da busca, sem chamada extra à internet) e afetam o cálculo de dano de verdade.
 - **Tutorial rápido** (4 telas) na primeira vez que abre, sempre com botão "Pular" visível. Não aparece de novo depois (fica salvo no aparelho).
 
-## Sobre os ícones e o `rival.png`
-
-Confirmado: não existe `rival.png` nenhum, nem enviado por você nem usado pelo projeto — era uma referência quebrada só no código antigo. Os ícones (`assets/icons/icon-192.png` e `icon-512.png`) são exatamente os dois tamanhos que um PWA/APK precisa — não precisa de mais nenhum. Pra trocar pelos seus, é só sobrescrever esses dois arquivos com o mesmo nome/tamanho.
-
-## Como transformar em APK
-
-1. **Hospede a pasta em algum lugar com HTTPS** — GitHub Pages, Netlify ou Vercel, todos grátis. Arraste a pasta ou conecte um repositório; qualquer um desses te dá uma URL tipo `https://seuapp.netlify.app`.
-2. Abra essa URL uma vez no navegador do celular pra confirmar que carrega e que o service worker registra (você pode conferir em DevTools > Application > Service Workers, no computador).
-3. Vá em **[pwabuilder.com](https://www.pwabuilder.com)**, cole a URL do passo 1, clique em "Start".
-4. O PWABuilder vai analisar o `manifest.json` e o `sw.js` automaticamente (já estão prontos aqui) e vai gerar um pacote Android (APK ou AAB) pra baixar.
-5. Transfira o APK pro celular (por cabo, ou link de download) e instale — pode ser preciso permitir "instalar de fontes desconhecidas" nas configurações do Android.
-6. Pra mandar pros seus amigos, é só compartilhar esse mesmo arquivo `.apk` — cada um instala igual você fez.
-
-**Depois de instalado, o app funciona 100% offline** (menos buscar Pokémon novo e o primeiro contato do modo online, que precisam de internet) — o Service Worker já guarda tudo no aparelho na primeira abertura.
-
-Se preferir não hospedar em lugar nenhum público, dá pra rodar um servidor local só durante a geração do APK (ex: `python3 -m http.server` na sua própria máquina) e usar `ngrok` ou similar pra expor temporariamente com HTTPS — mas isso é mais trabalhoso; hospedar de graça no Netlify/GitHub Pages é o caminho mais simples e o que eu recomendo.
-
 ## Limitações conhecidas (deliberadamente não implementadas, documentadas)
 
 - **Golpes na lista de bloqueio da busca** não têm efeito implementado (ver lista completa em `BLOCKED_MOVE_NAMES` no `pokemon-data.js`) — no roster inicial alguns desses golpes ainda aparecem (ex: Força Sombria da Giratina) porque já estavam lá antes; funcionam como um golpe comum (sem a mecânica especial), não quebram nada.
